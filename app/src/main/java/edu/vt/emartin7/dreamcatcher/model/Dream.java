@@ -23,18 +23,14 @@ public class Dream {
     private Date mDateRevealed;
     private boolean mIsDeferred;
     private boolean mIsRealized;
-    private boolean alreadyRealized;
     private List<DreamEntry> mDreamEntries;
 
     public Dream() {
-        mID = UUID.randomUUID();
-        mDateRevealed = new Date();
-        mIsDeferred = false;
-        mIsRealized = false;
-        mTitle = null;
-        mDreamEntries = new ArrayList<>();
+        this(UUID.randomUUID());
+    }
 
-        addDreamRevealed();
+    public Dream(UUID id) {
+        mID = id;
     }
 
     public UUID getID() {
@@ -49,6 +45,10 @@ public class Dream {
         return df.format(mDateRevealed);
     }
 
+    public Date getDateRevealed() {
+        return mDateRevealed;
+    }
+
     public boolean isDeferred() {
         return mIsDeferred;
     }
@@ -59,6 +59,15 @@ public class Dream {
 
     public List<DreamEntry> getDreamEntries() {
         return mDreamEntries;
+    }
+
+    public void setDreamEntries(List<DreamEntry> dreamEntries) {
+        mDreamEntries = dreamEntries;
+    }
+
+    public void setDateRevealed(Date dateRevealed) {
+        mDateRevealed = dateRevealed;
+        addDreamRevealed();
     }
 
     public void setTitle(String title) {
