@@ -15,7 +15,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -25,18 +24,13 @@ import edu.vt.emartin7.dreamcatcher.model.Dream;
 import edu.vt.emartin7.dreamcatcher.model.DreamEntry;
 import edu.vt.emartin7.dreamcatcher.model.DreamEntryKind;
 import edu.vt.emartin7.dreamcatcher.model.DreamLab;
+import edu.vt.emartin7.dreamcatcher.model.DreamEntryLab;
 
-import static android.graphics.Color.BLACK;
-import static android.graphics.Color.GRAY;
-import static android.graphics.Color.GREEN;
-import static android.graphics.Color.RED;
-import static android.graphics.Color.WHITE;
+
+
 import static android.view.View.GONE;
 import static android.view.View.TEXT_ALIGNMENT_TEXT_START;
 import static edu.vt.emartin7.dreamcatcher.model.DreamEntryKind.COMMENT;
-import static edu.vt.emartin7.dreamcatcher.model.DreamEntryKind.DEFERRED;
-import static edu.vt.emartin7.dreamcatcher.model.DreamEntryKind.REALIZED;
-import static edu.vt.emartin7.dreamcatcher.model.DreamEntryKind.REVEALED;
 
 /**
  * Created by ericmartin on 2/10/18.
@@ -67,7 +61,7 @@ public class DreamFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         UUID dreamId = (UUID) getArguments().getSerializable(ARG_DREAM_ID);
-        mDream = DreamLab.get(getActivity()).getDream(dreamId);
+        mDream = DreamLab.getInstance(getActivity()).getDream(dreamId);
     }
 
     @Nullable
@@ -191,5 +185,12 @@ public class DreamFragment extends Fragment {
         DreamFragment fragment = new DreamFragment();
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        DreamLab.getInstance(getActivity()).updateDream(mDream);
+        DreamEntryLab.getInstance(getActivity()).updateDreamEntries(mDream);
     }
 }

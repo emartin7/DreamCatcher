@@ -17,7 +17,6 @@ public class DreamEntryCursorWrapper extends CursorWrapper {
     }
 
     public DreamEntry getDreamEntry() {
-        String uuidString = getString(getColumnIndex(DreamDbSchema.DreamEntryTable.Cols.UUID));
         String text = getString(getColumnIndex(DreamDbSchema.DreamEntryTable.Cols.TEXT));
         long date = getLong(getColumnIndex(DreamDbSchema.DreamEntryTable.Cols.DATE));
         String kind = getString(getColumnIndex(DreamDbSchema.DreamEntryTable.Cols.KIND));

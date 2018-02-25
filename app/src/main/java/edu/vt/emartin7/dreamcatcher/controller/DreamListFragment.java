@@ -48,7 +48,7 @@ public class DreamListFragment extends Fragment {
     }
 
     private void updateUI() {
-        DreamLab dreamLab = DreamLab.get(getActivity());
+        DreamLab dreamLab = DreamLab.getInstance(getActivity());
         List<Dream> dreams = dreamLab.getDreams();
 
         if (mAdapter == null) {

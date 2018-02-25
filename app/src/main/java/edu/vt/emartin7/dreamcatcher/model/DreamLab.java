@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,8 +23,6 @@ public class DreamLab {
     private SQLiteDatabase mDatabase;
     private Context mContext;
 
-//    private List<Dream> mDreams;
-
     private DreamLab(Context context) {
 
         mContext = context.getApplicationContext();
@@ -31,6 +30,7 @@ public class DreamLab {
 
         Dream dream1 = new Dream();
         dream1.setTitle("Travel to Thailand");
+        dream1.setDateRevealed(new Date());
         dream1.addComment("Read travel magazines glorifying it");
         dream1.addComment("Booked Travel");
         dream1.addComment("Had a blast");
@@ -39,6 +39,7 @@ public class DreamLab {
 
         Dream dream2 = new Dream();
         dream2.setTitle("Eat an extra large pizza");
+        dream2.setDateRevealed(new Date());
         dream2.addComment("Odd goal, but one that I held");
         dream2.addComment("Ordered extra large from Mellow Mushroom");
         dream2.setDeferred(true);
@@ -47,6 +48,7 @@ public class DreamLab {
 
         Dream dream3 = new Dream();
         dream3.setTitle("Break 80 in golf");
+        dream3.setDateRevealed(new Date());
         dream3.addComment("Set practice plan to get better");
         dream3.addComment("Golfing better and better");
         dream3.setRealized(true);
@@ -56,6 +58,7 @@ public class DreamLab {
         for (int i = 0; i < 20; i++) {
             Dream dream = new Dream();
             dream.setTitle("Dream #" + i);
+            dream.setDateRevealed(new Date());
 
 
             dream.setRealized(i % 3 == 0);
@@ -64,7 +67,7 @@ public class DreamLab {
         }
     }
 
-    public static DreamLab get(Context context) {
+    public static DreamLab getInstance(Context context) {
         if (sDreamLab == null) {
             sDreamLab = new DreamLab(context);
         }
@@ -91,7 +94,7 @@ public class DreamLab {
         ContentValues values = getDreamValues(dream);
         mDatabase.insert(DreamTable.NAME, null, values);
         for (DreamEntry entry : dream.getDreamEntries()) {
-            DreamEntryLab.getInstance(mContext).addDreamEntry(entry, dream);
+            DreamEntryLab.getInstance(mContext).addDreamEntry(dream, entry);
         }
     }
 

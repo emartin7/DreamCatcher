@@ -30,6 +30,7 @@ public class Dream {
     }
 
     public Dream(UUID id) {
+        mDreamEntries = new ArrayList<>();
         mID = id;
     }
 
