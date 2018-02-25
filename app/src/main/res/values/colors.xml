@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#212121</color>
+    <color name="realizedBackground">#4CAF50</color>
+    <color name="realizedText">#FFFFFF</color>
+    <color name="revealedBackground">#1976D2</color>
+    <color name="revealedText">#FFFFFF</color>
+    <color name="deferredBackground">#D32F2F</color>
+    <color name="deferredText">#FFFFFF</color>
+    <color name="commentBackground">#616161</color>
+    <color name="commentText">#FFFFFF</color>
+</resources>
